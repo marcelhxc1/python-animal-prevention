@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Avistamentos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Registro de Avistamentos de Animais Peçonhentos</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Preencha o formulário abaixo:</h2>
+        <form method="post" class="bg-white p-4 border rounded shadow">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_cep" class="form-label">CEP:</label>
+                {{ form.cep }}
+            </div>
+            <div class="mb-3">
+                <label for="id_animal_type" class="form-label">Espécie do Animal:</label>
+                {{ form.animal_type }}
+            </div>
+            <div class="mb-3">
+                <label for="id_date" class="form-label">Data do Avistamento:</label>
+                {{ form.date }}
+            </div>
+            <div class="mb-3">
+                <label for="id_action_taken" class="form-label">Ação Tomada:</label>
+                {{ form.action_taken }}
+            </div>
+            <button type="submit" class="btn btn-success">Registrar Avistamento</button>
+        </form>
+        <a href="{% url 'sighting_list' %}" class="btn btn-info mt-3">Ver Lista de Avistamentos</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Registro de Animais Peçonhentos</p>
+    </footer>
+
+    <script>
+        $(function() {
+            $("#id_date").datepicker({
+                dateFormat: "yy-mm-dd" 
+            });
+        });
+    </script>
+</body>
+</html>

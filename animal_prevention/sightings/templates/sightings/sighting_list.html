@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Avistamentos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lista de Avistamentos</h1>
+    </header>
+    
+    <div class="container">
+        <table class="table table-bordered table-striped bg-white">
+            <thead>
+                <tr>
+                    <th>CEP</th>
+                    <th>Espécie do Animal</th>
+                    <th>Data</th>
+                    <th>Ação Tomada</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sighting in sightings %}
+                <tr>
+                    <td>{{ sighting.cep }}</td>
+                    <td>{{ sighting.animal_type }}</td>
+                    <td>{{ sighting.date }}</td>
+                    <td>{{ sighting.action_taken }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">Nenhum avistamento registrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Registro de Animais Peçonhentos</p>
+    </footer>
+</body>
+</html>
